@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create New Event</h1>
+        <div id="error-message" class="error"></div>
+        <div id="success-message" class="success" style="display: none;"></div>
+        
+        <form id="event-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="type_number">Event Type Number:</label>
+                <input type="number" id="type_number" name="type_number" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Event Date:</label>
+                <input type="datetime-local" id="date" name="date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="animal_id">Animal ID:</label>
+                <input type="text" id="animal_id" name="animal_id" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="location_id">Location ID:</label>
+                <input type="text" id="location_id" name="location_id" required>
+            </div>
+            
+            <button type="submit" class="btn">Create Event</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('event-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                type_number: parseInt(document.getElementById('type_number').value),
+                description: document.getElementById('description').value,
+                date: document.getElementById('date').value,
+                animal_id: document.getElementById('animal_id').value,
+                location_id: document.getElementById('location_id').value
+            };
+
+            try {
+                const savedEvent = await createEvent(formData);
+                const successMessage = document.getElementById('success-message');
+                successMessage.textContent = `Event created successfully with ID: ${savedEvent._id}`;
+                successMessage.style.display = 'block';
+            } catch (error) {
+                // Error handling is already done in createEvent function
+            }
+        });
+    </script>
+</body>
+</html>

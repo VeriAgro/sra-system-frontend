@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Animal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create New Animal</h1>
+        <div id="error-message" class="error"></div>
+        <div id="success-message" class="success" style="display: none;"></div>
+        
+        <form id="animal-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="birth">Birth Date:</label>
+                <input type="date" id="birth" name="birth" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <select id="sex" name="sex" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="breed">Breed:</label>
+                <input type="text" id="breed" name="breed" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" step="0.1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="location_id">Location ID:</label>
+                <input type="text" id="location_id" name="location_id" required>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            
+            <button type="submit" class="btn">Create Animal</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('animal-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const imageFile = document.getElementById('image').files[0];
+            const reader = new FileReader();
+
+            reader.onload = async function(event) {
+                const base64Image = event.target.result;
+                
+                const formData = {
+                    name: document.getElementById('name').value,
+                    description: document.getElementById('description').value,
+                    birth: document.getElementById('birth').value,
+                    sex: document.getElementById('sex').value,
+                    breed: document.getElementById('breed').value,
+                    color: document.getElementById('color').value,
+                    weight: parseFloat(document.getElementById('weight').value),
+                    height: parseInt(document.getElementById('height').value),
+                    location_id: document.getElementById('location_id').value,
+                    image: base64Image
+                };
+                console.log(`curl -X POST -H "Content-Type: application/json" -d '${JSON.stringify(formData)}' http://localhost/animal`);
+                
+                try {
+                    const savedAnimal = await createAnimal(formData);
+                    const successMessage = document.getElementById('success-message');
+                    successMessage.textContent = `Animal created successfully with ID: ${savedAnimal._id}`;
+                    successMessage.style.display = 'block';
+                } catch (error) {
+                    // Error handling is already done in createAnimal function
+                }
+            };
+
+            if (imageFile) {
+                reader.readAsDataURL(imageFile);
+            }
+        });
+    </script>
+</body>
+</html>
