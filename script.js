@@ -1,4 +1,4 @@
-const URL = 'http://localhost:80';
+const URL = 'https://sra-system-backend.gigio.dev';
 function searchAnimal(id){
     fetch(`${URL}/animal/${id}`)
         .then(response => {
