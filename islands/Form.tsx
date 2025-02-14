@@ -21,7 +21,7 @@ export default function Form({ schema, endpoint, onSubmit }: FormProps) {
   const handleSubmit = async (e: JSX.TargetedEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch(`https://sra-system-backend-999646529726.southamerica-east1.run.app/${endpoint}`, {
+      const response = await fetch(`https://sra-system-backend-999646529726.us-central1.run.app//${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
