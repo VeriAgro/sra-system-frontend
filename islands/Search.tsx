@@ -38,10 +38,10 @@ export default function Search() {
     try {
       const [animalResponse, eventsResponse] = await Promise.all([
         fetch(
-          `https://sra-system-backend-999646529726.us-central1.run.app//animal/${searchId}`
+          `https://sra-system-backend-999646529726.us-central1.run.app/animal/${searchId}`
         ),
         fetch(
-          `https://sra-system-backend-999646529726.us-central1.run.app//event/animal/${searchId}`
+          `https://sra-system-backend-999646529726.us-central1.run.app/events/animal/${searchId}`
         )
       ]);
       const animalData: AnimalData = await animalResponse.json();
