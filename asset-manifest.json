@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sra-system-frontend/static/css/main.6db1eff9.css",
+    "main.js": "/sra-system-frontend/static/js/main.3c32073a.js",
+    "static/js/453.8ab44547.chunk.js": "/sra-system-frontend/static/js/453.8ab44547.chunk.js",
+    "index.html": "/sra-system-frontend/index.html",
+    "main.6db1eff9.css.map": "/sra-system-frontend/static/css/main.6db1eff9.css.map",
+    "main.3c32073a.js.map": "/sra-system-frontend/static/js/main.3c32073a.js.map",
+    "453.8ab44547.chunk.js.map": "/sra-system-frontend/static/js/453.8ab44547.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6db1eff9.css",
+    "static/js/main.3c32073a.js"
+  ]
+}
