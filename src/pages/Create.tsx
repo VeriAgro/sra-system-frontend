@@ -22,7 +22,7 @@ function Create({ form }: { form: string }) {
 				new FormValue("Location", "location_id", true),
 				new FormValue("Animal", "animal_id", true)
 			] : []}
-			URL={`http://localhost:8080/${form}`}
+			URL={`https://sra-system-backend-999646529726.us-central1.run.app/${form}`}
 		/>
 		</>
 	);

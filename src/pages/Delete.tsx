@@ -8,7 +8,7 @@ function Delete() {
     const handleDelete = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:8080/animal/${animalId}`, {
+            const response = await fetch(`https://sra-system-backend-999646529726.us-central1.run.app/animal/${animalId}`, {
                 method: 'DELETE'
             });
             if (response.ok) {
